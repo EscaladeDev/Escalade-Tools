@@ -154,6 +154,38 @@
       color: var(--muted);
     }
 
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .button-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 158, 232, 0.28);
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: white;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      box-shadow: 0 16px 36px rgba(0, 158, 232, 0.22);
+      transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+    }
+
+    .button-primary:hover,
+    .button-primary:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 42px rgba(0, 158, 232, 0.28);
+      filter: brightness(1.04);
+      outline: none;
+    }
+
     .section-title {
       margin: 42px 0 16px;
       font-size: 1.2rem;
@@ -309,6 +341,9 @@
         Escalade Tools is a central hub for the growing Escalade ecosystem — a single place to discover map tools,
         utilities, and experimental projects, then jump directly to the one you need.
       </p>
+      <div class="hero-actions">
+        <a class="button-primary" href="https://donate.stripe.com/4gM4gBcmO1nG9PA5zF1B601" target="_blank" rel="noopener noreferrer">Support Escalade</a>
+      </div>
     </section>
 
     <section class="info-panel" aria-label="Escalade mission">
@@ -388,6 +423,7 @@
   </main>
 </body>
 </html>
+
 
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "7388a2f5005044638ad1d44433aba727"}'></script><!-- End Cloudflare Web Analytics -->
 
