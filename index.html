@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escalade Tools</title>
+  <meta name="description" content="Escalade Tools hub page linking all Escalade projects in one place." />
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f6f8fb;
+      --bg-elevated: rgba(255, 255, 255, 0.82);
+      --bg-hero: linear-gradient(135deg, rgba(0, 175, 255, 0.14), rgba(72, 98, 255, 0.10));
+      --text: #111827;
+      --muted: #4b5563;
+      --border: rgba(17, 24, 39, 0.10);
+      --accent: #009ee8;
+      --accent-strong: #0078c2;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+      --badge-bg: rgba(17, 24, 39, 0.06);
+      --badge-text: #374151;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1120;
+        --bg-elevated: rgba(15, 23, 42, 0.82);
+        --bg-hero: linear-gradient(135deg, rgba(0, 175, 255, 0.16), rgba(84, 77, 255, 0.14));
+        --text: #f8fafc;
+        --muted: #cbd5e1;
+        --border: rgba(255, 255, 255, 0.10);
+        --accent: #5ad1ff;
+        --accent-strong: #8ddfff;
+        --shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+        --badge-bg: rgba(255, 255, 255, 0.08);
+        --badge-text: #e2e8f0;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    body {
+      min-height: 100vh;
+      background-image:
+        radial-gradient(circle at top left, rgba(0, 175, 255, 0.10), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(109, 40, 217, 0.08), transparent 26%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 56px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: var(--accent-strong);
+      font-size: 0.95rem;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      margin-top: 18px;
+      padding: 34px;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: var(--bg-hero);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2.25rem, 5vw, 4.5rem);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 18px 0 0;
+      font-size: 1.08rem;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .section-title {
+      margin: 42px 0 16px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 238px;
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--bg-elevated);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .card:hover,
+    .card:focus-visible {
+      transform: translateY(-3px);
+      border-color: rgba(0, 158, 232, 0.45);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16);
+      outline: none;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: 1.45rem;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .badge {
+      flex-shrink: 0;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      font-size: 0.73rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .link-row {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .info-panel {
+      margin-top: 28px;
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .info-panel h3 {
+      margin: 0 0 12px;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+    }
+
+    .info-panel ul {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    footer {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 20px, 1120px);
+        padding-top: 20px;
+      }
+
+      .hero,
+      .card,
+      .info-panel {
+        border-radius: 20px;
+      }
+
+      .hero {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="eyebrow">Escalade Tools</div>
+
+    <section class="hero">
+      <h1>All your tools, one front door.</h1>
+      <p>
+        Escalade Tools is a central hub for the growing Escalade ecosystem — a single place to discover map tools,
+        utilities, and experimental projects, then jump directly to the one you need.
+      </p>
+    </section>
+
+    <h2 class="section-title">Projects</h2>
+    <section class="tool-grid" aria-label="Escalade tool links">
+      <a class="card" href="https://github.com/EscaladeDev/DungeonSketch" target="_blank" rel="noopener noreferrer">
+        <div class="card-top">
+          <h2>Dungeon Sketch</h2>
+          <span class="badge">Alpha</span>
+        </div>
+        <p>
+          A lightweight browser-based map sketching tool for quickly blocking out dungeon layouts, rooms, corridors,
+          and labels.
+        </p>
+        <div class="link-row"><span>View project</span><span aria-hidden="true">→</span></div>
+      </a>
+
+      <a class="card" href="https://github.com/EscaladeDev/HexCrawl" target="_blank" rel="noopener noreferrer">
+        <div class="card-top">
+          <h2>HexCrawl</h2>
+          <span class="badge">Live</span>
+        </div>
+        <p>
+          A hex-based exploration tool in the Escalade toolkit for crawl-style mapping and traversal workflows.
+        </p>
+        <div class="link-row"><span>View project</span><span aria-hidden="true">→</span></div>
+      </a>
+
+      <a class="card" href="https://github.com/EscaladeDev/Victor" target="_blank" rel="noopener noreferrer">
+        <div class="card-top">
+          <h2>Victor</h2>
+          <span class="badge">Alpha</span>
+        </div>
+        <p>
+          A high-performance, client-side raster-to-SVG vectorizer that runs entirely in the browser with privacy-first
+          processing.
+        </p>
+        <div class="link-row"><span>View project</span><span aria-hidden="true">→</span></div>
+      </a>
+
+      <a class="card" href="https://github.com/EscaladeDev/AdHush" target="_blank" rel="noopener noreferrer">
+        <div class="card-top">
+          <h2>AdHush</h2>
+          <span class="badge">Live</span>
+        </div>
+        <p>
+          A streamlined utility in the Escalade ecosystem focused on ad-related cleanup and reduction.
+        </p>
+        <div class="link-row"><span>View project</span><span aria-hidden="true">→</span></div>
+      </a>
+    </section>
+
+    <section class="info-panel" aria-label="Future site notes">
+      <h3>Built to grow</h3>
+      <ul>
+        <li>Add a patch notes or recent updates section below the project grid.</li>
+        <li>Swap GitHub links for app launch links wherever a live tool is available.</li>
+        <li>Layer in full Escalade branding, logo treatment, and featured project callouts.</li>
+      </ul>
+    </section>
+
+    <footer>
+      Designed as a simple standalone <code>index.html</code> with automatic light and dark theme support.
+    </footer>
+  </main>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "7388a2f5005044638ad1d44433aba727"}'></script><!-- End Cloudflare Web Analytics -->
+
+</body>
+</html>
