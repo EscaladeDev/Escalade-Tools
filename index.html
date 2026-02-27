@@ -3,55 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Escalade Tools</title>
-  <meta name="description" content="Escalade Tools hub page linking all Escalade projects in one place." />
+  <title>Escalade Dashboard</title>
+  <meta
+    name="description"
+    content="Escalade Dashboard is a visual hub for discovering and accessing Escalade projects in one place."
+  />
   <style>
     :root {
       color-scheme: light dark;
-      --bg: #fcfcfd;
-      --bg-elevated: rgba(255, 255, 255, 0.96);
-      --bg-hero: linear-gradient(135deg, rgba(0, 170, 255, 0.16), rgba(255, 255, 255, 0.92) 42%, rgba(99, 102, 241, 0.10));
-      --text: #0b1220;
-      --muted: #475569;
+      --bg: #f6f8fc;
+      --bg-elevated: rgba(255, 255, 255, 0.84);
+      --bg-elevated-strong: rgba(255, 255, 255, 0.96);
+      --hero-bg:
+        radial-gradient(circle at top left, rgba(0, 170, 255, 0.18), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(99, 102, 241, 0.18), transparent 30%),
+        linear-gradient(135deg, rgba(255,255,255,0.86), rgba(255,255,255,0.72));
+      --text: #091220;
+      --muted: #516074;
       --border: rgba(15, 23, 42, 0.10);
-      --accent: #015e94;
-      --accent-strong: #07487d;
-      --shadow: 0 24px 70px rgba(15, 23, 42, 0.10);
-      --badge-bg: rgba(15, 23, 42, 0.05);
+      --accent: #0a84d6;
+      --accent-strong: #005fcc;
+      --shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+      --shadow-soft: 0 12px 34px rgba(15, 23, 42, 0.10);
+      --badge-bg: rgba(15, 23, 42, 0.06);
       --badge-text: #334155;
-      --grid-line: rgba(15, 23, 42, 0.045);
-      --panel-highlight: rgba(255, 255, 255, 0.8);
+      --grid-line: rgba(15, 23, 42, 0.04);
+      --panel-highlight: rgba(255, 255, 255, 0.72);
+      --image-overlay: linear-gradient(to top, rgba(2, 6, 23, 0.78), rgba(2, 6, 23, 0.14) 58%, rgba(2, 6, 23, 0));
+      --card-bottom-bg: rgba(255, 255, 255, 0.86);
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #020617;
-        --bg-elevated: rgba(8, 15, 30, 0.88);
-        --bg-hero: linear-gradient(135deg, rgba(0, 195, 255, 0.18), rgba(8, 15, 30, 0.96) 42%, rgba(88, 28, 135, 0.30));
+        --bg-elevated: rgba(6, 12, 24, 0.72);
+        --bg-elevated-strong: rgba(8, 15, 30, 0.92);
+        --hero-bg:
+          radial-gradient(circle at top left, rgba(0, 195, 255, 0.20), transparent 32%),
+          radial-gradient(circle at bottom right, rgba(96, 165, 250, 0.16), transparent 30%),
+          linear-gradient(135deg, rgba(8,15,30,0.88), rgba(8,15,30,0.76));
         --text: #f8fbff;
-        --muted: #aebed3;
+        --muted: #afbfd2;
         --border: rgba(255, 255, 255, 0.10);
-        --accent: #2b9cbf;
-        --accent-strong: #498192;
-        --shadow: 0 26px 80px rgba(0, 0, 0, 0.48);
+        --accent: #49b8ff;
+        --accent-strong: #77c8ff;
+        --shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
+        --shadow-soft: 0 16px 38px rgba(0, 0, 0, 0.34);
         --badge-bg: rgba(255, 255, 255, 0.08);
         --badge-text: #e2ecf8;
         --grid-line: rgba(148, 163, 184, 0.08);
         --panel-highlight: rgba(255, 255, 255, 0.03);
+        --image-overlay: linear-gradient(to top, rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.22) 58%, rgba(2, 6, 23, 0));
+        --card-bottom-bg: rgba(8, 15, 30, 0.90);
       }
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    html, body {
+    html,
+    body {
       min-height: 100vh;
+      margin: 0;
       background:
-        radial-gradient(circle at 0% 0%, rgba(0, 174, 255, 0.15), transparent 28%),
-        radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.12), transparent 26%),
-        linear-gradient(to bottom, transparent, transparent),
+        radial-gradient(circle at 0% 0%, rgba(0, 174, 255, 0.14), transparent 28%),
+        radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.10), transparent 26%),
         var(--bg);
       background-attachment: fixed;
       position: relative;
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     body::before {
@@ -62,9 +84,9 @@
       background-image:
         linear-gradient(var(--grid-line) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-      background-size: 36px 36px;
-      mask-image: radial-gradient(circle at center, black 32%, transparent 92%);
-      opacity: 0.9;
+      background-size: 38px 38px;
+      mask-image: radial-gradient(circle at center, black 34%, transparent 92%);
+      opacity: 0.95;
     }
 
     body::after {
@@ -73,18 +95,11 @@
       inset: 0;
       pointer-events: none;
       background:
-        radial-gradient(circle at 20% 10%, rgba(255,255,255,0.24), transparent 18%),
-        radial-gradient(circle at 80% 18%, rgba(255,255,255,0.10), transparent 16%),
-        radial-gradient(circle at 50% 100%, rgba(0,174,255,0.08), transparent 30%);
-      opacity: 0.9;
+        radial-gradient(circle at 18% 10%, rgba(255,255,255,0.20), transparent 18%),
+        radial-gradient(circle at 80% 16%, rgba(255,255,255,0.08), transparent 16%),
+        radial-gradient(circle at 50% 100%, rgba(0,174,255,0.07), transparent 30%);
+      opacity: 0.95;
       mix-blend-mode: screen;
-    }
-
-    body {
-      min-height: 100vh;
-      background-image:
-        radial-gradient(circle at top left, rgba(0, 175, 255, 0.10), transparent 28%),
-        radial-gradient(circle at bottom right, rgba(109, 40, 217, 0.08), transparent 26%);
     }
 
     a {
@@ -93,38 +108,23 @@
     }
 
     .page {
-      width: min(1120px, calc(100% - 32px));
+      width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 32px 0 56px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--bg-elevated);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      color: var(--accent-strong);
-      font-size: 0.95rem;
-      font-weight: 700;
-      box-shadow: var(--shadow);
+      padding: 28px 0 64px;
+      position: relative;
+      z-index: 1;
     }
 
     .hero {
-      margin-top: 18px;
-      padding: 38px;
-      border: 1px solid var(--border);
-      border-radius: 32px;
-      background: var(--bg-hero);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
       position: relative;
       overflow: hidden;
+      padding: 40px;
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      background: var(--hero-bg);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       isolation: isolate;
     }
 
@@ -132,50 +132,73 @@
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(circle at top right, rgba(255,255,255,0.48), transparent 28%),
-        linear-gradient(135deg, transparent, var(--panel-highlight));
       pointer-events: none;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,0.30), transparent 25%),
+        linear-gradient(135deg, transparent, var(--panel-highlight));
       z-index: -1;
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      border: 1px solid var(--border);
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
     .hero h1 {
       margin: 0;
-      font-size: clamp(2.25rem, 5vw, 4.5rem);
-      line-height: 0.96;
-      letter-spacing: -0.04em;
+      font-size: clamp(2.5rem, 5vw, 4.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
     }
 
     .hero p {
       max-width: 760px;
       margin: 18px 0 0;
       font-size: 1.08rem;
-      line-height: 1.65;
+      line-height: 1.7;
       color: var(--muted);
     }
 
     .hero-actions {
       display: flex;
-      gap: 14px;
       flex-wrap: wrap;
-      margin-top: 24px;
+      gap: 14px;
+      margin-top: 26px;
     }
 
     .button-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      min-height: 48px;
-      padding: 0 18px;
+      min-height: 50px;
+      padding: 0 20px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      background: linear-gradient(135deg, #005fcc, #003b8f);
-      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: linear-gradient(135deg, #0068d8, #003d96);
+      color: #fff;
       font-weight: 800;
       letter-spacing: -0.01em;
-      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
-      box-shadow: 0 18px 40px rgba(0, 40, 110, 0.35);
+      box-shadow: 0 18px 40px rgba(0, 40, 110, 0.34);
       transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
     }
 
@@ -183,147 +206,206 @@
     .button-primary:focus-visible {
       transform: translateY(-2px);
       box-shadow: 0 22px 48px rgba(0, 40, 110, 0.42);
-      filter: brightness(1.08);
+      filter: brightness(1.06);
       outline: none;
-    }
-
-    .section-title {
-      margin: 42px 0 16px;
-      font-size: 1.2rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .tool-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      min-height: 238px;
-      padding: 22px;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      background: linear-gradient(180deg, var(--panel-highlight), transparent 22%), var(--bg-elevated);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
-      overflow: hidden;
-    }
-
-    .card::after {
-      content: "";
-      position: absolute;
-      inset: auto -10% -35% auto;
-      width: 120px;
-      height: 120px;
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(0, 174, 255, 0.18), transparent 68%);
-      pointer-events: none;
-    }
-
-    .card:hover,
-    .card:focus-visible {
-      transform: translateY(-3px);
-      border-color: rgba(0, 158, 232, 0.45);
-      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16);
-      outline: none;
-    }
-
-    .card-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 14px;
-    }
-
-    .card h2 {
-      margin: 0;
-      font-size: 1.45rem;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-    }
-
-    .badge {
-      flex-shrink: 0;
-      padding: 7px 11px;
-      border-radius: 999px;
-      background: var(--badge-bg);
-      color: var(--badge-text);
-      font-size: 0.73rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.6;
-      flex-grow: 1;
-    }
-
-    .link-row {
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--accent);
-      font-weight: 700;
     }
 
     .info-panel {
       margin-top: 28px;
-      padding: 26px;
-      border-radius: 26px;
+      padding: 28px;
+      border-radius: 28px;
       border: 1px solid var(--border);
-      background: linear-gradient(180deg, var(--panel-highlight), transparent 22%), var(--bg-elevated);
-      box-shadow: var(--shadow);
+      background: linear-gradient(180deg, var(--panel-highlight), transparent 24%), var(--bg-elevated);
+      box-shadow: var(--shadow-soft);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      position: relative;
-      overflow: hidden;
     }
 
-    .info-panel h3 {
-      margin: 0 0 12px;
-      font-size: 1.35rem;
+    .info-panel h2 {
+      margin: 0 0 10px;
+      font-size: 1.32rem;
       letter-spacing: -0.02em;
     }
 
-    .info-panel ul {
+    .info-panel p {
       margin: 0;
-      padding-left: 20px;
+      max-width: 840px;
       color: var(--muted);
       line-height: 1.75;
     }
 
-    footer {
-      margin-top: 20px;
-      color: var(--muted);
-      font-size: 0.96rem;
+    .section-header {
+      margin: 42px 0 18px;
     }
 
-    @media (max-width: 640px) {
+    .section-header h2 {
+      margin: 0 0 8px;
+      font-size: 1.28rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-header p {
+      margin: 0;
+      max-width: 780px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-height: 390px;
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated-strong);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    }
+
+    .project-card:hover,
+    .project-card:focus-visible {
+      transform: translateY(-4px);
+      border-color: rgba(0, 158, 232, 0.42);
+      box-shadow: 0 28px 70px rgba(15, 23, 42, 0.18);
+      outline: none;
+    }
+
+    .project-image-wrap {
+      position: relative;
+      min-height: 220px;
+      overflow: hidden;
+      background: #0f172a;
+    }
+
+    .project-image {
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: transform 240ms ease;
+    }
+
+    .project-card:hover .project-image,
+    .project-card:focus-visible .project-image {
+      transform: scale(1.03);
+    }
+
+    .project-image-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--image-overlay);
+      pointer-events: none;
+    }
+
+    .project-image-content {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .project-image-content h3 {
+      margin: 0;
+      font-size: 1.5rem;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      color: #fff;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.42);
+    }
+
+    .badge {
+      flex-shrink: 0;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.20);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .project-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 14px;
+      padding: 20px 20px 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent), var(--card-bottom-bg);
+    }
+
+    .project-body p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(10, 132, 214, 0.10);
+      border: 1px solid rgba(10, 132, 214, 0.18);
+      color: var(--accent);
+      font-weight: 800;
+      transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
+    }
+
+    .project-card:hover .project-link,
+    .project-card:focus-visible .project-link {
+      transform: translateX(2px);
+      background: rgba(10, 132, 214, 0.14);
+      border-color: rgba(10, 132, 214, 0.28);
+    }
+
+    footer {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 720px) {
       .page {
-        width: min(100% - 20px, 1120px);
+        width: min(100% - 20px, 1180px);
         padding-top: 20px;
       }
 
       .hero,
-      .card,
-      .info-panel {
-        border-radius: 20px;
+      .info-panel,
+      .project-card {
+        border-radius: 22px;
       }
 
       .hero {
-        padding: 24px;
+        padding: 26px;
+      }
+
+      .project-image-wrap,
+      .project-image {
+        min-height: 200px;
       }
     }
   </style>
@@ -331,79 +413,158 @@
 <body>
   <main class="page">
     <section class="hero">
-      <div style="display:flex; align-items:center; gap:10px; margin-bottom:18px; flex-wrap:wrap;">
-        <span style="padding:6px 10px; border-radius:999px; background:var(--badge-bg); color:var(--badge-text); font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em;">Independent software</span>
-        <span style="padding:6px 10px; border-radius:999px; background:var(--badge-bg); color:var(--badge-text); font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em;">Creative tools</span>
+      <div class="hero-top">
+        <span class="pill">Independent software</span>
+        <span class="pill">Creative tools</span>
+        <span class="pill">Escalade</span>
       </div>
-      <h1>Escalade Dashboard.</h1>
+
+      <h1>Escalade Dashboard</h1>
       <p>
-        Escalade Dashboard is a central hub for discovering and accessing Escalade projects.
+        A visual hub for discovering Escalade projects in one place. Browse tools, jump into active builds,
+        and explore streamlined software made for creators, tinkerers, and mapmakers.
       </p>
+
       <div class="hero-actions">
-        <a class="button-primary" href="https://donate.stripe.com/4gM4gBcmO1nG9PA5zF1B601" target="_blank" rel="noopener noreferrer">Support Escalade</a>
+        <a
+          class="button-primary"
+          href="https://donate.stripe.com/4gM4gBcmO1nG9PA5zF1B601"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Support Escalade
+        </a>
       </div>
     </section>
 
     <section class="info-panel" aria-label="Escalade mission">
-      <h3>Our mission</h3>
-      <p style="margin: 0; color: var(--muted); line-height: 1.75; max-width: 860px;">
-        Escalade tools help people create and explore. The goal is to make streamlined tools that empower you.
+      <h2>Our mission</h2>
+      <p>
+        Escalade builds focused tools that help people create, explore, and iterate with less friction.
+        The aim is simple: make software that feels sharp, useful, and enjoyable to use.
       </p>
     </section>
 
-    <h2 class="section-title">Projects</h2>
-    <p style="margin: 0 0 18px; max-width: 760px; color: var(--muted); line-height: 1.7;">
-      A small suite of focused utilities built for creators, tinkerers, and people who want sharper tools with less friction.
-    </p>
-    <section class="tool-grid" aria-label="Escalade tool links">
-      <a class="card" href="https://escaladedev.github.io/DungeonSketch/" target="_blank" rel="noopener noreferrer">
-        <div class="card-top">
-          <h2>Dungeon Sketch</h2>
-          <span class="badge">Alpha</span>
+    <section class="section-header">
+      <h2>Projects</h2>
+      <p>
+        A growing suite of visual tools and utilities. Add screenshots for each project to turn this into a proper portfolio-style dashboard.
+      </p>
+    </section>
+
+    <section class="project-grid" aria-label="Escalade project links">
+      <a
+        class="project-card"
+        href="https://escaladedev.github.io/DungeonSketch/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="project-image-wrap">
+          <img
+            class="project-image"
+            src="images/dungeon-sketch.jpg"
+            alt="Preview image of Dungeon Sketch"
+          />
+          <div class="project-image-content">
+            <h3>Dungeon Sketch</h3>
+            <span class="badge">Alpha</span>
+          </div>
         </div>
-        <p>
-          A lightweight browser-based map making tool for quickly making your ideas for dungeons into a reality. 
-        </p>
-        <div class="link-row"><span>View project</span><span aria-hidden="true">→</span></div>
+        <div class="project-body">
+          <p>
+            A lightweight browser-based map making tool for quickly shaping dungeon ideas into playable layouts.
+          </p>
+          <span class="project-link">View project <span aria-hidden="true">→</span></span>
+        </div>
       </a>
 
-      <a class="card" href="https://escaladedev.github.io/HexCrawl/" target="_blank" rel="noopener noreferrer">
-        <div class="card-top">
-          <h2>HexCrawl</h2>
-          <span class="badge">Alpha</span>
+      <a
+        class="project-card"
+        href="https://escaladedev.github.io/HexCrawl/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="project-image-wrap">
+          <img
+            class="project-image"
+            src="images/hexcrawl.jpg"
+            alt="Preview image of HexCrawl"
+          />
+          <div class="project-image-content">
+            <h3>HexCrawl</h3>
+            <span class="badge">Alpha</span>
+          </div>
         </div>
-        <p>
-          A hex-based exploration tool for hex-crawl-style mapping and traversal.
-        </p>
-        <div class="link-row"><span>View project</span><span aria-hidden="true">→</span></div>
+        <div class="project-body">
+          <p>
+            A hex-based exploration tool built for map traversal, discovery, and hex-crawl style workflows.
+          </p>
+          <span class="project-link">View project <span aria-hidden="true">→</span></span>
+        </div>
       </a>
 
-      <a class="card" href="https://escaladedev.github.io/Victor/" target="_blank" rel="noopener noreferrer">
-        <div class="card-top">
-          <h2>Victor</h2>
-          <span class="badge">Alpha</span>
+      <a
+        class="project-card"
+        href="https://escaladedev.github.io/Victor/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="project-image-wrap">
+          <img
+            class="project-image"
+            src="images/victor.jpg"
+            alt="Preview image of Victor"
+          />
+          <div class="project-image-content">
+            <h3>Victor</h3>
+            <span class="badge">Alpha</span>
+          </div>
         </div>
-        <p>
-          A high-performance, client-side raster-to-SVG vectorizer that runs entirely in the browser.
-        </p>
-        <div class="link-row"><span>View project</span><span aria-hidden="true">→</span></div>
+        <div class="project-body">
+          <p>
+            A high-performance client-side raster-to-SVG vectorizer that runs entirely in the browser.
+          </p>
+          <span class="project-link">View project <span aria-hidden="true">→</span></span>
+        </div>
       </a>
 
-      <a class="card" href="https://adhush.us" target="_blank" rel="noopener noreferrer">
-        <div class="card-top">
-          <h2>AdHush</h2>
-          <span class="badge">Alpha</span>
+      <a
+        class="project-card"
+        href="https://adhush.us"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="project-image-wrap">
+          <img
+            class="project-image"
+            src="images/adhush.jpg"
+            alt="Preview image of AdHush"
+          />
+          <div class="project-image-content">
+            <h3>AdHush</h3>
+            <span class="badge">Alpha</span>
+          </div>
         </div>
-        <p>
-          A streamlined browser extension that mutes detected ads.
-        </p>
-        <div class="link-row"><span>View project</span><span aria-hidden="true">→</span></div>
+        <div class="project-body">
+          <p>
+            A streamlined browser extension designed to mute detected ads with a lightweight, focused experience.
+          </p>
+          <span class="project-link">View project <span aria-hidden="true">→</span></span>
+        </div>
       </a>
     </section>
+
+    <footer>
+      Built by Escalade.
+    </footer>
   </main>
-      <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "7388a2f5005044638ad1d44433aba727"}'></script><!-- End Cloudflare Web Analytics -->
+
+  <!-- Cloudflare Web Analytics -->
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "7388a2f5005044638ad1d44433aba727"}'
+  ></script>
+  <!-- End Cloudflare Web Analytics -->
 </body>
 </html>
-
-
-
